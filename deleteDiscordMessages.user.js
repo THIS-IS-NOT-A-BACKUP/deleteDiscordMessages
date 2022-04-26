@@ -3,7 +3,15 @@
 // @description   Extends the discord interface so you can mass delete messages from discord
 // @namespace     https://github.com/victornpb/deleteDiscordMessages
 // @version       4.2
-// @match         https://discord.com/*
+// @match         https://discord.com/app
+// @match         https://discord.com/channels/*
+// @match         https://discord.com/login
+// @match         https://ptb.discord.com/app
+// @match         https://ptb.discord.com/channels/*
+// @match         https://ptb.discord.com/login
+// @match         https://canary.discord.com/app
+// @match         https://canary.discord.com/channels/*
+// @match         https://canary.discord.com/login
 // @downloadURL   https://raw.githubusercontent.com/victornpb/deleteDiscordMessages/master/deleteDiscordMessages.user.js
 // @homepageURL   https://github.com/victornpb/deleteDiscordMessages
 // @supportURL    https://github.com/victornpb/deleteDiscordMessages/issues
@@ -29,7 +37,7 @@
  * @author Victornpb <https://www.github.com/victornpb>
  * @see https://github.com/victornpb/deleteDiscordMessages
  */
-async function deleteMessages(authToken, authorId, guildId, channelId, minId, maxId, content, hasLink, hasFile, includeNsfw, includePinned, searchDelay, deleteDelay, extLogger, stopHndl, onProgress) {
+async function deleteMessages(authToken, authorId, guildId, channelId, minId, maxId, content, hasLink, hasFile, includeNsfw, includePinned, pattern, searchDelay, deleteDelay, extLogger, stopHndl, onProgress) {
     const start = new Date();
     let delCount = 0;
     let failCount = 0;
@@ -62,10 +70,10 @@ async function deleteMessages(authToken, authorId, guildId, channelId, minId, ma
     async function recurse() {
         let API_SEARCH_URL;
         if (guildId === '@me') {
-            API_SEARCH_URL = `https://discord.com/api/v6/channels/${channelId}/messages/`; // DMs
+            API_SEARCH_URL = `https://discord.com/api/v9/channels/${channelId}/messages/`; // DMs
         }
         else {
-            API_SEARCH_URL = `https://discord.com/api/v6/guilds/${guildId}/messages/`; // Server
+            API_SEARCH_URL = `https://discord.com/api/v9/guilds/${guildId}/messages/`; // Server
         }
 
         const headers = {
@@ -122,12 +130,20 @@ async function deleteMessages(authToken, authorId, guildId, channelId, minId, ma
             }
         }
 
+        let regex;
+
+        try {
+            regex = new RegExp(pattern);
+        } catch(e) {
+            log.warn('Ignoring RegExp because pattern is malformed')
+        }
+
         const data = await resp.json();
         const total = data.total_results;
         if (!grandTotal) grandTotal = total;
         const discoveredMessages = data.messages.map(convo => convo.find(message => message.hit === true));
         const messagesToDelete = discoveredMessages.filter(msg => {
-            return msg.type === 0 || msg.type === 6 || (msg.pinned && includePinned);
+            return (msg.type === 0 || || (msg.type >= 6 && msg.type <= 21) || (msg.pinned && includePinned)) && (!regex || msg.content.match(regex));
         });
         const skippedMessages = discoveredMessages.filter(msg => !messagesToDelete.find(m => m.id === msg.id));
 
@@ -144,7 +160,7 @@ async function deleteMessages(authToken, authorId, guildId, channelId, minId, ma
         log.verb(`Estimated time remaining: ${etr}`)
 
 
-        if (messagesToDelete.length > 0) {
+        if (messagesToDelete.length > 0 || skippedMessages.length > 0) {
 
             if (++iterations < 1) {
                 log.verb(`Waiting for your confirmation...`);
@@ -166,7 +182,7 @@ async function deleteMessages(authToken, authorId, guildId, channelId, minId, ma
                 let resp;
                 try {
                     const s = Date.now();
-                    const API_DELETE_URL = `https://discord.com/api/v6/channels/${message.channel_id}/messages/${message.id}`;
+                    const API_DELETE_URL = `https://discord.com/api/v9/channels/${message.channel_id}/messages/${message.id}`;
                     resp = await fetch(API_DELETE_URL, {
                         headers,
                         method: 'DELETE'
@@ -304,6 +320,9 @@ function initUI() {
                     <label><input id="hasFile" type="checkbox">has: file</label><br>
                     <label><input id="includePinned" type="checkbox">Include pinned</label>
                 </span><br>
+                <span>Pattern<br>
+                    <input id="pattern" type="text" placeholder="pattern to remove" priv>
+                </span>
                 <span>Search Delay <a
                 href="https://github.com/victornpb/deleteDiscordMessages/blob/master/help/delay.md" title="Help"
                 target="_blank">?</a><br>
@@ -326,7 +345,7 @@ function initUI() {
         </div>
         <pre class="logarea">
             <center>Star this project on <a href="https://github.com/victornpb/deleteDiscordMessages" target="_blank">github.com/victornpb/deleteDiscordMessages</a>!\n\n
-                <a href="https://github.com/victornpb/deleteDiscordMessages/issues" target="_blank">Issues or help</a>
+                <a href="https://github.com/victornpb/deleteDiscordMessages/discussions" target="_blank">Issues or help</a>
             </center>
         </pre>
     </div>
@@ -385,6 +404,7 @@ function initUI() {
         const hasFile = $('input#hasFile').checked;
         const includeNsfw = $('input#includeNsfw').checked;
         const includePinned = $('input#includePinned').checked;
+        const pattern = $('input#pattern').value;
         const searchDelay = parseInt($('input#searchDelay').value.trim());
         const deleteDelay = parseInt($('input#deleteDelay').value.trim());
         const progress = $('#progress');
@@ -421,7 +441,7 @@ function initUI() {
 
         stop = stopBtn.disabled = !(startBtn.disabled = true);
         for (let i = 0; i < channelIds.length; i++) {
-            await deleteMessages(authToken, authorId, guildId, channelIds[i], minId || minDate, maxId || maxDate, content, hasLink, hasFile, includeNsfw, includePinned, searchDelay, deleteDelay, logger, stopHndl, onProg);
+            await deleteMessages(authToken, authorId, guildId, channelIds[i], minId || minDate, maxId || maxDate, content, hasLink, hasFile, includeNsfw, includePinned, pattern, searchDelay, deleteDelay, logger, stopHndl, onProg);
             stop = stopBtn.disabled = !(startBtn.disabled = false);
         }
     };
