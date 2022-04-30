@@ -1,20 +1,13 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
+name: Feature request and ideas
+about: Post here instead 👉 https://github.com/victornpb/undiscord/discussions/categories/2-ideas
+title: '🛑 DO NOT USE THIS FORM FOR REQUESTS / IDEAS! 🛑'
 labels: ''
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+👇 PLEASE POST YOUR IDEA OR REQUEST HERE INSTEAD 👇
+https://github.com/victornpb/undiscord/discussions/categories/2-ideas
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
-
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+🙏 Please also check if your idea/request hasn't been posted before opening a new discussion.
