@@ -25,7 +25,7 @@
    * Safari: ~[Tampermonkey][safari_tampermonkey]~ 
     
 1. Install Undiscord:  
-  [![][greasyfork_icon]][greasyfork_url] or [![][openuserjs_icon]][openuserjs_url]
+  [![][greasyfork_icon]][greasyfork_url] or [![][openuserjs_icon]][openuserjs_url](outdated)
 
 1. Open <a href="https://discord.com/channels/@me" target="_blank">Discord</a> in your __browser__ (Not the App) and go to the channel or direct message you would like to be wiped.
 
@@ -54,7 +54,7 @@ Is prefered that _issues_ follow a certain format. If you're not familiar with b
 If you believe you found a bug please file an [issue](https://github.com/victornpb/undiscord/issues), but please fill the issue template.
 
 ### Copy paste version
-Looking for the old Copy/Paste version? [here](./help/copyPaste.md)
+Looking for the old Copy/Paste version? [here](https://github.com/victornpb/undiscord/wiki/Copy-paste-method)
 
 
 ----
