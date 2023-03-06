@@ -36,7 +36,7 @@
 
 1. Click the <kbd>Start</kbd> button to begin wipping!
 
-![Screenshot](https://user-images.githubusercontent.com/3372598/86538983-b60c7980-becf-11ea-8cad-1a33950e77fc.gif)
+![Screenshot](https://user-images.githubusercontent.com/3372598/222977831-88eeb59a-186a-4947-8e33-0ac245c3af5c.gif)
 
 I made this tool just for you ❤️ , it would be awesome if you could just click the [⭐️ Star button](https://github.com/victornpb/undiscord) at the top!
 
@@ -53,6 +53,8 @@ Check out the [Ideas][ideas] section, if your idea _hasn't been posted before_, 
 Is prefered that _issues_ follow a certain format. If you're not familiar with bug reports, please use the [discussions][discussions] tab instead.
 
 If you believe you found a bug please file an [issue](https://github.com/victornpb/undiscord/issues), but please fill the issue template.
+
+If you are looking to contribute please read the [CONTRIBUTING](./CONTRIBUTING.md) first.
 
 ### Copy paste version
 Looking for the old Copy/Paste version? [here](https://github.com/victornpb/undiscord/wiki/Copy-paste-method)
