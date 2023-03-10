@@ -4,13 +4,12 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/releases)
 [![GitHub License](https://img.shields.io/github/license/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/blob/master/LICENSE)
 [![CodeFactor](https://www.codefactor.io/repository/github/victornpb/undiscord/badge?style=flat-square)](https://www.codefactor.io/repository/github/victornpb/undiscord?style=flat-square)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/victornpb/undiscord?style=flat-square)
 [![GitHub Stars](https://img.shields.io/github/stars/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/network/members)
 [![GitHub Discussions](https://img.shields.io/github/discussions/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/discussions)
-[![GitHub open issues](https://img.shields.io/github/issues/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/issues?q=is%3Aopen+is%3Aissue)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/pulls)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/victornpb/undiscord?style=flat-square)](https://github.com/victornpb/undiscord/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/victornpb/undiscord?style=flat-square&color=green)](https://github.com/victornpb/undiscord/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/victornpb/undiscord?style=flat-square&color=green)](https://github.com/victornpb/undiscord/issues?q=is%3Aissue+is%3Aclosed)
 <!-- end shields -->
 
 > ⚠️ **Any tool that automates actions on user accounts, including this one, could result in account termination.** (see [self-bots][self-bots]).  
